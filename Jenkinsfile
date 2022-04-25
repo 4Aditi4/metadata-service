@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = "<4aditi4/metadata-service"
+        DOCKER_IMAGE_NAME = "4aditi4/metadata-service"
         DOCKER_USERNAME = "4aditi4"
         DOCKER_PASSWORD = credentials('DOCKER_SECRET')
     }
@@ -40,8 +40,8 @@ pipeline {
             steps {
                 sh '''
                     echo "deploying the application ........"
-                    docker rm -f dobby-app || true
-                    docker run -d -p 4444:4444 --name dobby-app "${DOCKER_IMAGE_NAME}":latest
+                    docker rm -f metadata_service || true
+                    docker run -d -p 9000:8080 --name metadata_service "${DOCKER_IMAGE_NAME}":latest
                 '''
             }
         }
